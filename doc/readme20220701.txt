@@ -1,0 +1,8 @@
+ALTER TABLE `summaries` ADD `name` VARCHAR(32) NULL AFTER `wavsize`;
+UPDATE `summaries` SET `name` = 'ONE CONTACT' WHERE `name` IS NULL;
+
+ALTER TABLE `uploadlogs` ADD INDEX(`uploaded`);
+ALTER TABLE `sendlogs` ADD INDEX(`uploadlog_id`);
+
+
+

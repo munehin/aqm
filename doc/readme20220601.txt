@@ -1,0 +1,11 @@
+tqELnz
+
+ALTER TABLE `uploadlogs` ADD INDEX(`status`);
+
+UPDATE uploadlogs u, jobs j
+ SET u.status = 98
+, u.modified = NOW()
+ WHERE u.job_id = j.id
+ AND u.status = 0
+ AND (u.wavsize < IFNULL(j.wavmin, 0)
+ OR u.wavsize > IFNULL(j.wavmax, 2147483647));
